@@ -47,7 +47,7 @@ jobs:
       - name: Install Node Dependencies
         run: npm ci
 
-      - name: Install Dependencies
+      - name: Install composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Copy Environment File
@@ -76,7 +76,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'
+          path: './public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
