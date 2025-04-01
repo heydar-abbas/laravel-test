@@ -29,9 +29,7 @@ jobs:
 
     steps:
       - name: Checkout
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v4
 
       - name: Cache composer dependencies
         uses: actions/cache@v2
