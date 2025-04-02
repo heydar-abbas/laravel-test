@@ -3,25 +3,16 @@ name: test and deploy
 on:
   push:
     branches:
-      - develop
       - main
   pull_request:
     branches:
-      - develop
       - main
-
-  workflow_dispatch:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
 
 jobs:
   ci:
@@ -31,20 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Cache composer dependencies
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: vendor
-      #     key: composer-${{ hashFiles('**/composer.lock') }}
-      #     restore-keys: |
-      #       composer-
-
       - name: Setup PHP
         uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
         with:
           php-version: 8.2
-          # new line
-          # extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
           tools: composer:v2
           coverage: xdebug
 
@@ -87,7 +68,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public/build/'
+          path: './public'
 
       - name: Deploy to GitHub Pages
         id: deployment
